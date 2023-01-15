@@ -36,6 +36,14 @@ login(){
 
   this.authService.login( email, password ).subscribe(resp => {
     console.log(resp);
+
+    if(resp ) {
+      this.router.navigateByUrl('/dashboard')
+    }else {
+      //TODO mostrar msg error
+    }
+
+
   })
 
 }
