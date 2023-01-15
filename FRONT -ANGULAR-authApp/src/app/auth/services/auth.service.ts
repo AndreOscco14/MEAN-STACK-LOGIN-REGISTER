@@ -1,9 +1,24 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environments';
+import { AuthResponse } from '../interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor() { }
+  private baseUrl: string = environment.baseUrl
+
+  constructor(
+    private http: HttpClient
+  ) { }
+
+
+
+  login(  email: string, password: string){
+    const url = `${this.baseUrl}/auth`;
+    
+   return this.http.post<AuthResponse>(url, {email, password})
+  }
 }
